@@ -1,0 +1,13 @@
+.nav {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.fa-cog,
+.fa-moon,
+.fa-sun {
+  color: var(--secondary-color);
+  cursor: pointer;
+}

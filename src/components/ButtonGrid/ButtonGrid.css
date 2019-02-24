@@ -1,0 +1,7 @@
+.buttonGrid {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(3, max-content);
+  grid-gap: 0.5rem;
+}

@@ -1,0 +1,17 @@
+.stats {
+  font-size: 2.5rem;
+  font-weight: 200;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.stats__fraction {
+  margin-right: 1.5rem;
+}
+
+.stats__fraction,
+.stats__percentage {
+  color: var(--secondary-color);
+}

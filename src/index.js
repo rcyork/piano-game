@@ -1,5 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 
-ReactDOM.render(<div>blah</div>, document.getElementById("root"));
+import { App } from "./App";
+import "./index.css";
+import "./reset.css";
+
+ReactDOM.render(<App />, document.getElementById("root"));
