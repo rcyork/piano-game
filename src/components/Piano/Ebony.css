@@ -6,8 +6,20 @@
   border-radius: 5px;
   margin-right: 4.2856%;
   transform: translateX(-50%);
+  justify-content: center;
 }
 
 .ebony.FsharpGflat {
   margin-left: 14.2856%;
+}
+
+.ebony.highlight::before {
+  content: "";
+  width: 75%;
+  height: 15%;
+  border-radius: 50%;
+  background: red;
+  position: absolute;
+  top: 80%;
+  left: 10%;
 }
