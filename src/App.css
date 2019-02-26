@@ -6,7 +6,7 @@
 .app {
   width: 100%;
   max-width: 550px;
-  height: 100vh;
+  min-height: 100vh;
   background: var(--primary-color);
   padding: 1rem;
   margin: auto;
