@@ -9,7 +9,7 @@ import "./App.css";
 
 export class App extends React.Component {
   state = {
-    darkMode: false,
+    darkMode: JSON.parse(localStorage.getItem("darkMode")) || false,
     currentNote: null,
     mostRecentGuess: null,
     numberOfCorrectGuesses: null,
@@ -17,12 +17,16 @@ export class App extends React.Component {
   };
 
   toggleTheme = () => {
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        darkMode: !prevState.darkMode
-      };
-    });
+    this.setState(
+      prevState => {
+        return {
+          ...prevState,
+          darkMode: !prevState.darkMode
+        };
+      },
+      () =>
+        localStorage.setItem("darkMode", JSON.stringify(this.state.darkMode))
+    );
   };
 
   render() {
