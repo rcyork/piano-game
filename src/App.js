@@ -29,6 +29,11 @@ export class App extends React.Component {
     );
   };
 
+  randomHighlight = () => {
+    const randomNumber = (Math.floor(Math.random() * 12) + 1).toString();
+    this.setState({ currentNote: randomNumber });
+  };
+
   render() {
     const dark = this.state.darkMode ? "dark" : "";
     return (
@@ -36,7 +41,7 @@ export class App extends React.Component {
         <div className="app">
           <Nav darkMode={this.state.darkMode} toggleTheme={this.toggleTheme} />
           <Stats />
-          <Piano />
+          <Piano currentNote={this.state.currentNote} />
           <ButtonGrid />
         </div>
       </div>
