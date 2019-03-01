@@ -1,7 +1,7 @@
 import React from "react";
 import "./Ivory.css";
 
-export const Ivory = ({ note, id, currentNote }) => {
-  const highlight = id === currentNote ? "highlight" : "";
-  return <div className={`ivory ${note} ${highlight}`} />;
+export const Ivory = ({ note, currentNote }) => {
+  const highlight = note === currentNote ? "highlight" : "";
+  return <div className={`${note} ivory ${highlight}`} />;
 };

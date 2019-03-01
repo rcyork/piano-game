@@ -9,7 +9,7 @@
   justify-content: center;
 }
 
-.ebony.Fsharp {
+.ebony[class^="F#"] {
   margin-left: 14.2856%;
 }
 

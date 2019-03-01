@@ -3,30 +3,42 @@ import { GuessButton } from "./GuessButton";
 
 import "./ButtonGrid.css";
 
-export const ButtonGrid = () => {
+const NOTES = [
+  "C#",
+  "D#",
+  "E#",
+  "F#",
+  "G#",
+  "A#",
+  "B#",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "A",
+  "B",
+  "Cb",
+  "Db",
+  "Eb",
+  "Fb",
+  "Gb",
+  "Ab",
+  "Bb"
+];
+
+export const ButtonGrid = ({ checkGuess, incorrectGuesses, correctGuess }) => {
   return (
     <div className="buttonGrid">
-      <GuessButton note="C#" />
-      <GuessButton note="D#" />
-      <GuessButton note="E#" />
-      <GuessButton note="F#" />
-      <GuessButton note="G#" />
-      <GuessButton note="A#" />
-      <GuessButton note="B#" />
-      <GuessButton note="C" />
-      <GuessButton note="D" />
-      <GuessButton note="E" />
-      <GuessButton note="F" />
-      <GuessButton note="G" />
-      <GuessButton note="A" />
-      <GuessButton note="B" />
-      <GuessButton note="Cb" />
-      <GuessButton note="Db" />
-      <GuessButton note="Eb" />
-      <GuessButton note="Fb" />
-      <GuessButton note="Gb" />
-      <GuessButton note="Ab" />
-      <GuessButton note="Bb" />
+      {NOTES.map(note => (
+        <GuessButton
+          key={note}
+          note={note}
+          checkGuess={() => checkGuess(note)}
+          incorrectGuesses={incorrectGuesses}
+          correctGuess={correctGuess}
+        />
+      ))}
     </div>
   );
 };

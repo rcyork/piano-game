@@ -6,6 +6,7 @@
   border-radius: 5px;
   border: 2px solid var(--secondary-color);
   position: relative;
+  outline: none;
 }
 
 .guess {
@@ -15,4 +16,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: var(--secondary-color);
+}
+
+.success {
+  background: green;
+}
+
+.failure {
+  background: red;
 }
