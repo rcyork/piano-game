@@ -13,6 +13,8 @@ const getRandomNote = () => {
   return NOTES[randomNumber];
 };
 
+const MODIFIER_KEYS = ["ArrowUp", "ArrowDown"];
+
 export class App extends React.Component {
   state = {
     darkMode: JSON.parse(localStorage.getItem("darkMode")) || false,
@@ -21,18 +23,62 @@ export class App extends React.Component {
     numberOfCorrectGuesses: null,
     totalGuesses: null,
     incorrectGuesses: [],
-    correctGuess: ""
+    correctGuess: "",
+    guessRowHighlight: null
   };
 
+  down = false;
+
   componentDidMount() {
-    this.randomHighlight();
+    this.highlightRandomNote();
+    window.addEventListener("keydown", this.handleModifierKey);
+    window.addEventListener("keyup", event => {
+      this.handleKeyUp(event.key);
+    });
+    window.addEventListener("keypress", event => {
+      this.handleGuessKey(event.key);
+    });
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.handleModifierKey);
+    window.removeEventListener("keyup", this.handleKeyUp);
+    window.removeEventListener("keydown", this.handleGuessKey);
+  }
+
+  handleModifierKey = event => {
+    const { key } = event;
+
+    if (this.down || !MODIFIER_KEYS.includes(key)) return;
+
+    this.down = true;
+
+    this.setState({ guessRowHighlight: key === "ArrowUp" ? "#" : "b" });
+  };
+
+  handleGuessKey = key => {
+    const modifier = this.state.guessRowHighlight || "";
+    const guess = `${key.toUpperCase()}${modifier}`;
+    // prevent checking guess of bogus keys
+    const validKeys = ["a", "b", "c", "d", "e", "f", "g"];
+    if (validKeys.includes(key)) {
+      this.checkGuess(guess);
+    }
+    return;
+  };
+
+  handleKeyUp = key => {
+    if (MODIFIER_KEYS.includes(key)) {
+      this.down = false; // stops repeating keys from being ignored
+      this.setState({ guessRowHighlight: null });
+    }
+    return;
+  };
 
   toggleTheme = () => {
     this.setState(
       prevState => {
         return {
-          ...prevState,
           darkMode: !prevState.darkMode
         };
       },
@@ -41,7 +87,7 @@ export class App extends React.Component {
     );
   };
 
-  randomHighlight = () => {
+  highlightRandomNote = () => {
     const { currentNote } = this.state;
     let newNote = currentNote;
 
@@ -53,11 +99,11 @@ export class App extends React.Component {
   };
 
   checkGuess = guess => {
+    console.log("guess", guess);
     if (!this.state.currentNote.includes(guess)) {
       this.setState(prevState => ({
         incorrectGuesses: [...prevState.incorrectGuesses, guess]
       }));
-
       return;
     }
 
@@ -67,7 +113,7 @@ export class App extends React.Component {
       this.setState({ correctGuess: "" });
     }, 200);
 
-    this.randomHighlight();
+    this.highlightRandomNote();
   };
 
   render() {
@@ -82,6 +128,7 @@ export class App extends React.Component {
             checkGuess={this.checkGuess}
             incorrectGuesses={this.state.incorrectGuesses}
             correctGuess={this.state.correctGuess}
+            rowHighlight={this.state.guessRowHighlight}
           />
         </div>
       </div>

@@ -7,12 +7,14 @@ export const GuessButton = ({
   note,
   checkGuess,
   incorrectGuesses,
-  correctGuess
+  correctGuess,
+  rowHighlight
 }) => {
   const guessClasses = classnames({
     guessWrap: true,
     success: note === correctGuess,
-    failure: incorrectGuesses.includes(note)
+    failure: incorrectGuesses.includes(note),
+    rowHighlight: note.includes(rowHighlight)
   });
   return (
     <button className={guessClasses} id={note} onClick={checkGuess}>

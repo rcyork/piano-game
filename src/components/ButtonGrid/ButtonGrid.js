@@ -27,7 +27,12 @@ const NOTES = [
   "Bb"
 ];
 
-export const ButtonGrid = ({ checkGuess, incorrectGuesses, correctGuess }) => {
+export const ButtonGrid = ({
+  checkGuess,
+  incorrectGuesses,
+  correctGuess,
+  rowHighlight
+}) => {
   return (
     <div className="buttonGrid">
       {NOTES.map(note => (
@@ -37,6 +42,7 @@ export const ButtonGrid = ({ checkGuess, incorrectGuesses, correctGuess }) => {
           checkGuess={() => checkGuess(note)}
           incorrectGuesses={incorrectGuesses}
           correctGuess={correctGuess}
+          rowHighlight={rowHighlight}
         />
       ))}
     </div>

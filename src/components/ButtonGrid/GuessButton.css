@@ -25,3 +25,7 @@
 .failure {
   background: red;
 }
+
+.rowHighlight {
+  border: 2px solid var(--accent-color);
+}

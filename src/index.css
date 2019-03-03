@@ -3,6 +3,7 @@
   --black: #4c4c4c;
   --primary-color: var(--white);
   --secondary-color: var(--black);
+  --accent-color: #007aff;
   font-family: sans-serif;
 }
 
