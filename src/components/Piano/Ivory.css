@@ -1,20 +1,24 @@
 .ivory {
+  position: relative;
+
   display: inline-block;
   height: 100%;
   width: 14.2856%;
   border-radius: 5px;
+
   background: var(--white);
   border: 1px solid var(--black);
-  position: relative;
 }
 
 .ivory.highlight::before {
+  position: absolute;
+  top: 83%;
+  left: 10%;
+
   content: "";
   width: 75%;
   height: 14%;
   border-radius: 50%;
+
   background: red;
-  position: absolute;
-  top: 83%;
-  left: 10%;
 }

@@ -1,6 +1,7 @@
 :root {
   --white: #fff;
   --black: #4c4c4c;
+  --green: #4cd964;
   --primary-color: var(--white);
   --secondary-color: var(--black);
   --accent-color: #007aff;
@@ -9,6 +10,7 @@
 
 * {
   box-sizing: border-box;
+
   background-color: inherit;
 }
 

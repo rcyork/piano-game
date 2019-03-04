@@ -1,25 +1,30 @@
 .guessWrap {
+  position: relative;
+
   /* creates square */
   height: 0;
   padding: calc(100% - 4px) 0 0 0;
 
   border-radius: 5px;
-  border: 2px solid var(--secondary-color);
-  position: relative;
   outline: none;
+
+  border: 2px solid var(--secondary-color);
 }
 
 .guess {
-  font-size: 1.25rem;
   position: absolute;
   top: 50%;
   left: 50%;
+
   transform: translate(-50%, -50%);
+
   color: var(--secondary-color);
+
+  font-size: 1.25rem;
 }
 
 .success {
-  background: green;
+  background: var(--green);
 }
 
 .failure {

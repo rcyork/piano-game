@@ -36,7 +36,7 @@ export class App extends React.Component {
     window.addEventListener("keyup", event => {
       this.handleKeyUp(event.key);
     });
-    window.addEventListener("keypress", event => {
+    window.addEventListener("keyup", event => {
       this.handleGuessKey(event.key);
     });
   }
@@ -44,7 +44,7 @@ export class App extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("keydown", this.handleModifierKey);
     window.removeEventListener("keyup", this.handleKeyUp);
-    window.removeEventListener("keydown", this.handleGuessKey);
+    window.removeEventListener("keyup", this.handleGuessKey);
   }
 
   handleModifierKey = event => {
