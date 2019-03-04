@@ -5,7 +5,22 @@
   margin-bottom: 1rem;
 }
 
-.fa-cog,
+.resetStats {
+  color: var(--secondary-color);
+  background: var(--primary-color);
+  font-size: 1.15rem;
+  font-weight: 200;
+  border-radius: 5px;
+  outline: none;
+  border: 2px solid var(--secondary-color);
+}
+
+.resetStats:hover {
+  color: var(--primary-color);
+  background: var(--secondary-color);
+  cursor: pointer;
+}
+
 .fa-moon,
 .fa-sun {
   color: var(--secondary-color);

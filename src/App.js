@@ -20,8 +20,9 @@ export class App extends React.Component {
     darkMode: JSON.parse(localStorage.getItem("darkMode")) || false,
     currentNote: null,
     mostRecentGuess: null,
-    numberOfCorrectGuesses: null,
-    totalGuesses: null,
+    totalCorrectGuesses:
+      JSON.parse(localStorage.getItem("totalCorrectGuesses")) || 0,
+    totalGuesses: JSON.parse(localStorage.getItem("totalGuesses")) || 0,
     incorrectGuesses: [],
     correctGuess: "",
     guessRowHighlight: null
@@ -98,16 +99,54 @@ export class App extends React.Component {
     this.setState({ currentNote: newNote });
   };
 
+  resetStats = () => {
+    this.setState({ totalCorrectGuesses: 0, totalGuesses: 0 }, () => {
+      localStorage.setItem(
+        "totalCorrectGuesses",
+        JSON.stringify(this.state.totalCorrectGuesses)
+      );
+      localStorage.setItem(
+        "totalGuesses",
+        JSON.stringify(this.state.totalGuesses)
+      );
+    });
+  };
+
   checkGuess = guess => {
-    console.log("guess", guess);
-    if (!this.state.currentNote.includes(guess)) {
+    // split into an array so that when checking a plain note doesn't pass when the note is sharp or flat
+    const currentNote = this.state.currentNote.split(" ");
+
+    // immediately add 1 to total guesses
+    this.setState(
+      prevState => ({ totalGuesses: prevState.totalGuesses + 1 }),
+      () =>
+        localStorage.setItem(
+          "totalGuesses",
+          JSON.stringify(this.state.totalGuesses)
+        )
+    );
+
+    // incorrect guess
+    if (!currentNote.includes(guess)) {
       this.setState(prevState => ({
         incorrectGuesses: [...prevState.incorrectGuesses, guess]
       }));
       return;
     }
 
-    this.setState({ correctGuess: guess, incorrectGuesses: [] });
+    // correct guess
+    this.setState(
+      prevState => ({
+        totalCorrectGuesses: prevState.totalCorrectGuesses + 1,
+        correctGuess: guess,
+        incorrectGuesses: []
+      }),
+      () =>
+        localStorage.setItem(
+          "totalCorrectGuesses",
+          JSON.stringify(this.state.totalCorrectGuesses)
+        )
+    );
 
     setTimeout(() => {
       this.setState({ correctGuess: "" });
@@ -121,8 +160,15 @@ export class App extends React.Component {
     return (
       <div className={`${dark} container`}>
         <div className="app">
-          <Nav darkMode={this.state.darkMode} toggleTheme={this.toggleTheme} />
-          <Stats />
+          <Nav
+            darkMode={this.state.darkMode}
+            toggleTheme={this.toggleTheme}
+            resetStats={this.resetStats}
+          />
+          <Stats
+            totalCorrectGuesses={this.state.totalCorrectGuesses}
+            totalGuesses={this.state.totalGuesses}
+          />
           <Piano currentNote={this.state.currentNote} />
           <ButtonGrid
             checkGuess={this.checkGuess}
