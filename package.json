@@ -5,6 +5,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "react": "^16.8.2",
+    "react-div-100vh": "^0.3.2",
     "react-dom": "^16.8.2",
     "react-scripts": "2.1.5"
   },

@@ -18,10 +18,10 @@
 .ebony.highlight::before {
   position: absolute;
   top: 80%;
-  left: 10%;
+  left: 15%;
 
   content: "";
-  width: 75%;
+  width: 70%;
   height: 15%;
   border-radius: 50%;
 

@@ -5,7 +5,6 @@ import { Stats } from "./components/Stats/Stats";
 import { Piano } from "./components/Piano/Piano";
 import { ButtonGrid } from "./components/ButtonGrid/ButtonGrid";
 import { NOTES } from "./notes";
-
 import "./App.css";
 
 const getRandomNote = () => {
